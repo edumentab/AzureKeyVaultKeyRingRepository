@@ -1,0 +1,65 @@
+﻿@using System.Xml.Linq
+
+@model Dictionary<string, string>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>The key ring demo</h2>
+This page demonstrates:
+<ul>
+    <li>
+        What the key ring contains
+    </li>
+    <li>
+        how the ASP.NET Core data protection API deals with key creation and revocation.
+    </li>
+    <li>
+        How you can store the key-ring in Azure Key Vault using the included AzureKeyVaultKeyRingRepository class.
+    </li>
+</ul>
+<br />
+<br />
+
+
+<h3>Key generation</h3>
+Creates a new key with the specified activation and expiration dates and persists
+the new key to the underlying repository.  (The key will expire in 30 seconds)
+<form asp-action="CreateNewKey" method="post">
+    <input type="submit" value="Create" />
+</form>
+
+<br />
+<h3>Revoke all keys</h3>
+Revokes all keys created and persists the revocation to the underlying repository (key-ring).
+<form asp-action="RevokeAllKeys" method="post">
+    <input type="submit" value="Revoke" />
+</form>
+<br />
+<br />
+
+<h2>Key ring</h2>
+
+The following entries are currently stored in the key ring:
+<br />
+<table class="table">
+    @foreach (var key in Model.Keys)
+    {
+        string keyname = key;
+        string keyvalue = Model[keyname];
+
+        <tr>
+            <td>
+                <h4>@keyname</h4>
+                <pre>@keyvalue</pre>
+            </td>
+        </tr>
+    }
+</table>
+
+<br/><br/>
+<h2>About Edument</h2>
+<a href="https://www.edument.se">Edument</a> is a tech/knowledge based company founded in 2010, based in Helsingborg, Sweden. With our specialist knowledge of different technologies, 
+we help both international enterprises and local startups with complex IT projects, system developer training and developing/realising 
+business ideas through our Techhub.
+
