@@ -24,7 +24,7 @@ namespace AzureKeyVaultKeyRingRepository_demo.Controllers
         public HomeController(IKeyManager keyManager, IConfiguration configuration, ILoggerFactory loggerFactory)
         {
             _keyring = new AzureKeyVaultKeyRingRepository(
-                keyRingName: "KeyRingTest2",
+                keyRingName: configuration["DataProtection:KeyRingName"],
                 vaultUrl: configuration["Vault:Url"],
                 clientId: configuration["Vault:ClientId"],
                 tenantId: configuration["Vault:TenantId"],
