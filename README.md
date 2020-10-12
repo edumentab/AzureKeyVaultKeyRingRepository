@@ -2,7 +2,7 @@
 
 The purpose is to demonstrate and show how to store the <a href="https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/introduction" target="_blank">ASP.NET Core Data Protection</a> API key-ring in <a href="https://azure.microsoft.com/en-us/services/key-vault/" target="_blank">Azure Key Vault.</a> The key-ring is stored as a base64 encoded XML document. 
 
-See the blog post XXXXXXXXXXXXXXXXXXXX for more details about this project.
+See the blog post <a href="https://www.edument.se/en/blog/post/storing-the-asp-net-core-data-protection-key-ring-in-azure-key-vault" target="_blank">Storing the ASP.NET Core Data Protection Key Ring in Azure Key Vault</a> for more details about this project.
 
 
 ## How to get started

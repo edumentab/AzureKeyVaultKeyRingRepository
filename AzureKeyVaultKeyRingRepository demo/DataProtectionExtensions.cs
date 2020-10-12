@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.AspNetCore.DataProtection.XmlEncryption;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -46,6 +47,23 @@ namespace AzureKeyVaultKeyRingRepository_demo
 
                     options.XmlRepository = new AzureKeyVaultKeyRingRepository(keyRingName, vaultUrl, clientId, tenantId, secret, loggerFactory);
                 });
+            });
+
+            return builder;
+        }
+
+        /// <summary>
+        /// Protect the key ring with no protection at all
+        ///
+        /// This extra extension method can be used if you for some reason don't w 
+        /// </summary>
+        /// <param name="builder">The <see cref="IDataProtectionBuilder"/>.</param>
+        /// <returns>A reference to the <see cref="IDataProtectionBuilder" /> after this operation has completed.</returns>
+        public static IDataProtectionBuilder ProtectKeysWithNoEncryption(this IDataProtectionBuilder builder)
+        {
+            builder.Services.Configure<KeyManagementOptions>(options =>
+            {
+                options.XmlEncryptor = new NullXmlEncryptor();
             });
 
             return builder;
